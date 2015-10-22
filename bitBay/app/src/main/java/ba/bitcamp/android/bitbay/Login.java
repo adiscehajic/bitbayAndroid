@@ -70,10 +70,6 @@ public class Login extends AppCompatActivity {
                 String email = mLEmail.getText().toString();
                 String password = mLPassword.getText().toString();
 
-                if (Register.users.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "1!", Toast.LENGTH_SHORT).show();
-                }
-
                 for (int i = 0; i < Register.users.size(); i++) {
                     if (Register.users.get(i).getEmail().equals(email) & Register.users.get(i).getPassword().equals(password)) {
                         Toast.makeText(getApplicationContext(), "Login is successful", Toast.LENGTH_SHORT).show();
