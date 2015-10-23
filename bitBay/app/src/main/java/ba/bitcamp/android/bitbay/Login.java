@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
+    private static final String REQUIRED_MSG = "Required";
+    private static final String EMAIL_MSG = "invalid email";
+    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 
     EditText mLEmail;
@@ -77,11 +80,12 @@ public class Login extends AppCompatActivity {
                         finish();
                         break;
                     }
-                    if ((!Register.users.get(i).getEmail().equals(email) & !Register.users.get(i).getPassword().equals(password))) {
+
+                    if ((!Register.users.get(i).getEmail().equals(email) & !Register.users.get(i).getPassword().equals(password)) & hasText(mLEmail) & hasText(mLPassword)) {
                         Toast.makeText(getApplicationContext(), "Incorrect email or password!", Toast.LENGTH_SHORT).show();
                         break;
 
-                    }
+                        }
 
                 }
 
@@ -96,6 +100,21 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
+
+    public static boolean hasText(EditText editText) {
+
+        String text = editText.getText().toString().trim();
+        editText.setError(null);
+
+        if (text.length() == 0) {
+            editText.setError(REQUIRED_MSG);
+            return false;
+        }
+
+        return true;
+    }
+    
 
 
 }
