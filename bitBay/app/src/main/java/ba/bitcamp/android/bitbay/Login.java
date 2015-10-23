@@ -76,7 +76,8 @@ public class Login extends AppCompatActivity {
                         startActivity(new Intent(Login.this, Product.class));
                         finish();
                         break;
-                    }else if ((!Register.users.get(i).getEmail().equals(email) & !Register.users.get(i).getPassword().equals(password))) {
+                    }
+                    if ((!Register.users.get(i).getEmail().equals(email) & !Register.users.get(i).getPassword().equals(password))) {
                         Toast.makeText(getApplicationContext(), "Incorrect email or password!", Toast.LENGTH_SHORT).show();
                         break;
 
