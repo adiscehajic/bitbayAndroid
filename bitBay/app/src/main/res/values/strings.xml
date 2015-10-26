@@ -1,10 +1,4 @@
 <resources>
     <string name="app_name">bitBay</string>
     <string name="title_activity_register">Register</string>
-
-    <string name="accountType">Account type</string>
-    <string-array name="account_array">
-        <item>Buyer</item>
-        <item>Seller</item>
-    </string-array>
 </resources>

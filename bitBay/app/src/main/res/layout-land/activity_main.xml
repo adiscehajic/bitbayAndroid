@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:text="Sign in"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorBit"
             android:textColor="#ffffff"/>
 
         <Button
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:text="Sign up"
             android:background="@drawable/button_border"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorBit"
             />
     </LinearLayout>
 </ScrollView>

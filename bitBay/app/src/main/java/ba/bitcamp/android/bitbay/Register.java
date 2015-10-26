@@ -24,6 +24,9 @@ import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
 
+
+    private static final String REQUIRED_MSG = "Required";
+
     EditText rFirstName;
     EditText rLastName;
     EditText rEmail;
@@ -89,15 +92,16 @@ public class Register extends AppCompatActivity {
 
     private boolean validateEmail(String email) {
         if (email.equals("")) {
-            Toast.makeText(Register.this, "This field is required.", Toast.LENGTH_SHORT).show();
+            hasText(rEmail);
             return false;
         }
         return true;
     }
 
     private boolean onlyLetters(String letter) {
-        if (letter.equals("")) {
-            Toast.makeText(Register.this, "This field is required.", Toast.LENGTH_SHORT).show();
+        if (letter.equals("") || letter.equals("")) {
+            hasText(rFirstName);
+            hasText(rLastName);
             return false;
         }
 
@@ -112,6 +116,14 @@ public class Register extends AppCompatActivity {
     private boolean passwordMatch(String password, String cofirmPassword) {
         int letter = 0;
         int number = 0;
+
+        if (password.equals("") || cofirmPassword.equals("")) {
+            hasText(rPassword);
+            hasText(rConfirmPassword);
+            return false;
+        }
+
+
         if (!password.equals(cofirmPassword)){
             Toast.makeText(Register.this, "Password doesn't match.", Toast.LENGTH_SHORT).show();
             return false;
@@ -128,6 +140,20 @@ public class Register extends AppCompatActivity {
 //            Toast.makeText(Register.this, "Password must contain at least one number.", Toast.LENGTH_SHORT).show();
 //            return false;
 //        }
+        return true;
+    }
+
+
+    public static boolean hasText(EditText editText) {
+
+        String text = editText.getText().toString().trim();
+        editText.setError(null);
+
+        if (text.length() == 0) {
+            editText.setError(REQUIRED_MSG);
+            return false;
+        }
+
         return true;
     }
 

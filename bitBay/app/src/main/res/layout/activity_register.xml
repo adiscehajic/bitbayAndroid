@@ -95,7 +95,7 @@
         <EditText
             android:id="@+id/rPassword"
             android:layout_width="match_parent"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />
 
@@ -107,7 +107,7 @@
         <EditText
             android:id="@+id/rConfirmPassword"
             android:layout_width="match_parent"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />
 
