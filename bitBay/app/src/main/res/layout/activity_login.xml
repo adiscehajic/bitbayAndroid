@@ -32,6 +32,7 @@
         android:id="@+id/lPassword"
         android:password="true"
         android:hint="Password"
+        android:inputType="text"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

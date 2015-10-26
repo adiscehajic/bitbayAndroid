@@ -81,7 +81,7 @@ public class Login extends AppCompatActivity {
                         break;
                     }
 
-                    if ((!Register.users.get(i).getEmail().equals(email) & !Register.users.get(i).getPassword().equals(password)) & hasText(mLEmail) & hasText(mLPassword)) {
+                    if (!Register.users.get(i).getEmail().equals(email) & !Register.users.get(i).getPassword().equals(password) & hasText(mLEmail) & hasText(mLPassword)) {
                         Toast.makeText(getApplicationContext(), "Incorrect email or password!", Toast.LENGTH_SHORT).show();
                         break;
 
@@ -114,7 +114,7 @@ public class Login extends AppCompatActivity {
 
         return true;
     }
-    
+
 
 
 }

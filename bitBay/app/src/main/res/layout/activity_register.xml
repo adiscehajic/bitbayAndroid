@@ -24,6 +24,7 @@
         <EditText
             android:id="@+id/rFirstName"
             android:layout_width="match_parent"
+            android:inputType="text"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />
 
@@ -35,20 +36,44 @@
         <EditText
             android:id="@+id/rLastName"
             android:layout_width="match_parent"
+            android:inputType="text"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />
 
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:entries="@array/account_array"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account type"
+                android:layout_alignParentLeft="true"/>
+
+            <RadioGroup
+                android:id="@+id/radioType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
 
+                <RadioButton
+                    android:id="@+id/rBuyer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buyer"
+                    android:checked="true"/>
+                <RadioButton
+                    android:id="@+id/rSeller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seller"
+                    android:checked="false"/>
+            </RadioGroup>
+
+        </LinearLayout>
 
         <TextView
             android:text="Email"
@@ -70,7 +95,7 @@
         <EditText
             android:id="@+id/rPassword"
             android:layout_width="match_parent"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />
 
@@ -82,7 +107,7 @@
         <EditText
             android:id="@+id/rConfirmPassword"
             android:layout_width="match_parent"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />
 

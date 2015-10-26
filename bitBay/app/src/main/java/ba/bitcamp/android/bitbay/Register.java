@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,11 +26,12 @@ public class Register extends AppCompatActivity {
 
     EditText rFirstName;
     EditText rLastName;
-    Spinner spinner;
     EditText rEmail;
     EditText rPassword;
     EditText rConfirmPassword;
     Button rRegister;
+    RadioButton rBuyer;
+    RadioButton rSeller;
 
     public static List<User> users = new LinkedList<User>();
 
@@ -50,24 +53,12 @@ public class Register extends AppCompatActivity {
 
         rFirstName = (EditText) findViewById(R.id.rFirstName);
         rLastName = (EditText) findViewById(R.id.rLastName);
-        spinner = (Spinner) findViewById(R.id.spinner);
         rEmail = (EditText) findViewById(R.id.rEmail);
         rPassword = (EditText) findViewById(R.id.rPassword);
         rConfirmPassword = (EditText) findViewById(R.id.rConfirmPassword);
-
         rRegister = (Button) findViewById(R.id.rRegister);
-
-       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-           @Override
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-           }
-
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
-
-           }
-       });
+        rSeller = (RadioButton) findViewById(R.id.rSeller);
+        rBuyer = (RadioButton) findViewById(R.id.rBuyer);
 
         rRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +69,7 @@ public class Register extends AppCompatActivity {
                 String email = rEmail.getText().toString();
                 String password = rPassword.getText().toString();
                 String confirmPassword = rConfirmPassword.getText().toString();
+
 
 
                 if (validateEmail(email) & passwordMatch(password, confirmPassword) & onlyLetters(lastName) &
