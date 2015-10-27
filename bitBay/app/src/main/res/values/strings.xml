@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">bitBay</string>
     <string name="title_activity_register">Register</string>
+    <string name="title_activity_product_view">ProductView</string>
 </resources>
