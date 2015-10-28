@@ -18,7 +18,8 @@
             android:layout_height="75dp"
             android:textSize="20sp"
             android:paddingTop="20dp"
-            android:hint="Name"/>
+            android:hint="Name"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/productPriceView"

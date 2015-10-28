@@ -1,4 +1,4 @@
-package ba.bitcamp.android.bitbay;
+package ba.bitcamp.android.bitbay.model;
 
 import android.content.Intent;
 

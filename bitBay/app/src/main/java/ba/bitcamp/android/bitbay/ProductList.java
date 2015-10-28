@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import ba.bitcamp.android.bitbay.model.ProductModel;
+
 /**
  * Created by senadin.botic on 27/10/15.
  */

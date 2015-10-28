@@ -1,4 +1,4 @@
-package ba.bitcamp.android.bitbay;
+package ba.bitcamp.android.bitbay.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,11 @@ import android.widget.TextView;
 
 import java.util.UUID;
 
-public class ProductView extends AppCompatActivity {
+import ba.bitcamp.android.bitbay.ProductList;
+import ba.bitcamp.android.bitbay.model.ProductModel;
+import ba.bitcamp.android.bitbay.R;
+
+public class ProductViewActivity extends AppCompatActivity {
 
     private ProductModel mProduct;
     private TextView mProductNameView;

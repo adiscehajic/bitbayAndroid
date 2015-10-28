@@ -1,4 +1,4 @@
-package ba.bitcamp.android.bitbay;
+package ba.bitcamp.android.bitbay.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +11,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Products extends AppCompatActivity {
+import ba.bitcamp.android.bitbay.ProductList;
+import ba.bitcamp.android.bitbay.model.ProductModel;
+import ba.bitcamp.android.bitbay.R;
+
+public class ProductsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ProductAdapter productAdapter;
@@ -22,10 +26,10 @@ public class Products extends AppCompatActivity {
         setContentView(R.layout.product_list_layout);
         //productAdapter.notifyDataSetChanged();
 
-        Toast.makeText(Products.this, "Radi", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ProductsActivity.this, "Radi", Toast.LENGTH_SHORT).show();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Products.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(ProductsActivity.this));
         updateUI();
 
 
@@ -57,8 +61,8 @@ public class Products extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(Products.this, "radi", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Products.this, ProductView.class);
+            Toast.makeText(ProductsActivity.this, "radi", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ProductsActivity.this, ProductViewActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("product_id", mProduct.getId());
             intent.putExtras(bundle);
@@ -80,7 +84,7 @@ public class Products extends AppCompatActivity {
 
         @Override
         public ProductHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(Products.this);
+            LayoutInflater layoutInflater = LayoutInflater.from(ProductsActivity.this);
             View view = layoutInflater.inflate(R.layout.product_layout, parent, false);
             return new ProductHolder(view);
         }
