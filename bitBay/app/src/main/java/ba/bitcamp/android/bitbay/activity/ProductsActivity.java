@@ -1,11 +1,15 @@
 package ba.bitcamp.android.bitbay.activity;
 
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,6 +28,7 @@ public class ProductsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list_layout);
+
         //productAdapter.notifyDataSetChanged();
 
         Toast.makeText(ProductsActivity.this, "Radi", Toast.LENGTH_SHORT).show();
@@ -33,6 +38,30 @@ public class ProductsActivity extends AppCompatActivity {
         updateUI();
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.product_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.profile:
+                Intent profileIntent = new Intent(ProductsActivity.this, Profile.class);
+                startActivity(profileIntent);
+                Toast.makeText(ProductsActivity.this, "User profile", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.logout:
+                Intent intent = new Intent(ProductsActivity.this, LoginActivity.class);
+                Toast.makeText(ProductsActivity.this, "Successful logout", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void updateUI() {
