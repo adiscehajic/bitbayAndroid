@@ -51,8 +51,9 @@ public class ProductsActivity extends AppCompatActivity {
             super(productView);
             productView.setOnClickListener(this);
 
-            mProductNameView = (TextView) productView.findViewById(R.id.title);
-            mProductPriceView = (TextView) productView.findViewById(R.id.price);
+            mProductNameView = (TextView) productView.findViewById(R.id.nameView);
+            mProductPriceView = (TextView) productView.findViewById(R.id.priceView);
+
             //dugme
             // dugme on click
 

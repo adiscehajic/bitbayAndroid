@@ -88,6 +88,7 @@ public class LoginActivity extends Activity {
 
                     @Override
                     public void failure(RetrofitError error) {
+
                         int smthing = 0;
                         Toast.makeText(LoginActivity.this, "Incorrect email or password, try again!", Toast.LENGTH_SHORT).show();
                     }

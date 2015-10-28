@@ -9,11 +9,20 @@ public class ProductModel {
     private UUID mId;
     private String mProductName;
     private String mProductPrice;
+    private String mProductDescription;
 
     public ProductModel(String productName, String productPrice) {
         mId = UUID.randomUUID();
         mProductName = productName;
         mProductPrice = productPrice;
+    }
+
+    public String getmProductDescription() {
+        return mProductDescription;
+    }
+
+    public void setmProductDescription(String mProductDescription) {
+        this.mProductDescription = mProductDescription;
     }
 
     public UUID getId() {

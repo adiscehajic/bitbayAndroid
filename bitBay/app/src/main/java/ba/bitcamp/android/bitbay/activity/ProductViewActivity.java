@@ -18,23 +18,26 @@ public class ProductViewActivity extends AppCompatActivity {
     private ProductModel mProduct;
     private TextView mProductNameView;
     private TextView mProductPriceView;
+    private TextView mProductDescriptionView;
     private Button mBuyButton;
     private UUID mProductId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_view_layout);
+        setContentView(R.layout.product_layout);
 
         mProductId = (UUID) getIntent().getSerializableExtra("product_id");
         Log.d("65", mProductId.toString());
         mProduct = ProductList.get().getProduct(mProductId);
 
-        mProductNameView = (TextView) findViewById(R.id.productNameView);
-        mProductPriceView = (TextView) findViewById(R.id.productPriceView);
+        mProductNameView = (TextView) findViewById(R.id.nameView);
+        mProductPriceView = (TextView) findViewById(R.id.priceView);
+        mProductDescriptionView = (TextView) findViewById(R.id.descriptionView);
 
         mProductNameView.setText(mProduct.getProductName());
         mProductPriceView.setText(mProduct.getProductPrice());
+        mProductDescriptionView.setText(mProduct.getmProductDescription());
 
         mBuyButton = (Button) findViewById(R.id.buyButton);
         mBuyButton.setOnClickListener(new View.OnClickListener() {
