@@ -1,19 +1,26 @@
 package ba.bitcamp.android.bitbay.activity;
 
 
+import android.content.Context;
+import android.support.v7.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import ba.bitcamp.android.bitbay.ProductList;
 import ba.bitcamp.android.bitbay.model.ProductModel;
@@ -21,13 +28,21 @@ import ba.bitcamp.android.bitbay.R;
 
 public class ProductsActivity extends AppCompatActivity {
 
+    private MenuItem mSearchAction;
     private RecyclerView recyclerView;
     private ProductAdapter productAdapter;
+    private EditText editSearch;
+    private boolean isSearchOpened = false;
+    private Toolbar mToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list_layout);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mToolbar);
 
         //productAdapter.notifyDataSetChanged();
 
@@ -40,10 +55,18 @@ public class ProductsActivity extends AppCompatActivity {
 
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.product_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        mSearchAction = menu.findItem(R.id.search);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -60,10 +83,68 @@ public class ProductsActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.search:
-                //TODO
+                handleMenuSearch();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void handleMenuSearch() {
+        ActionBar action = getSupportActionBar();
+
+        if (isSearchOpened) {
+            action.setDisplayShowCustomEnabled(false);
+            action.setDisplayShowTitleEnabled(true);
+
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(editSearch.getWindowToken(), 0);
+
+            mSearchAction.setIcon(R.drawable.search);
+
+            isSearchOpened = false;
+        } else {
+            action.setDisplayShowCustomEnabled(true);
+            action.setCustomView(R.layout.search_bar);
+            action.setDisplayShowTitleEnabled(false);
+
+
+
+            editSearch = (EditText)action.getCustomView().findViewById(R.id.editSearch);
+            editSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        doSearch();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+            editSearch.requestFocus();
+
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.showSoftInput(editSearch, InputMethodManager.SHOW_IMPLICIT);
+
+            mSearchAction.setIcon(R.drawable.search);
+
+            isSearchOpened = true;
+
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isSearchOpened) {
+            handleMenuSearch();
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    private void doSearch(){
+        //TODO
     }
 
     public void updateUI() {

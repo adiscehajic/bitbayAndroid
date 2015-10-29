@@ -2,6 +2,7 @@ package ba.bitcamp.android.bitbay.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import ba.bitcamp.android.bitbay.R;
 
@@ -10,10 +11,16 @@ import ba.bitcamp.android.bitbay.R;
  */
 public class Profile extends AppCompatActivity {
 
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitle("User profile");
     }
 
 }
