@@ -15,4 +15,12 @@
         android:icon="@drawable/logout"
         android:id="@+id/logout"/>
 
+    <item
+        android:id="@+id/search"
+        android:orderInCategory="200"
+        android:title="Search"
+        android:icon="@drawable/search"
+        app:showAsAction="ifRoom"/>
+
+
 </menu>

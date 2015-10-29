@@ -59,6 +59,8 @@ public class ProductsActivity extends AppCompatActivity {
                 Toast.makeText(ProductsActivity.this, "Successful logout", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 return true;
+            case R.id.search:
+                //TODO
             default:
                 return super.onOptionsItemSelected(item);
         }
