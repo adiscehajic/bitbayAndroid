@@ -18,9 +18,9 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        mToolbar.setTitle("User profile");
+        getSupportActionBar().setTitle("User profile");
     }
 
 }

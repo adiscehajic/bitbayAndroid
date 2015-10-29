@@ -57,7 +57,7 @@ public class LoginActivity extends Activity {
         mShowPassword = (CheckBox) findViewById(R.id.lShowPassword);
         mLogin = (Button) findViewById(R.id.lLogin);
 
-        restAdapter = new RestAdapter.Builder().setEndpoint("http://10.0.82.92:9000").build();
+        restAdapter = new RestAdapter.Builder().setEndpoint("http://169.254.6.102:9000").build();
         api = restAdapter.create(BitBayApi.class);
 
         mForgotPasswordLink = (TextView) findViewById(R.id.lForgotPasswordLink);

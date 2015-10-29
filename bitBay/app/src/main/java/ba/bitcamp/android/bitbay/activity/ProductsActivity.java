@@ -41,8 +41,9 @@ public class ProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list_layout);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Products");
 
         //productAdapter.notifyDataSetChanged();
 
@@ -85,9 +86,8 @@ public class ProductsActivity extends AppCompatActivity {
             case R.id.search:
                 handleMenuSearch();
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void handleMenuSearch() {
@@ -100,7 +100,7 @@ public class ProductsActivity extends AppCompatActivity {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(editSearch.getWindowToken(), 0);
 
-            mSearchAction.setIcon(R.drawable.search);
+            mSearchAction.setIcon(getResources().getDrawable(R.drawable.search));
 
             isSearchOpened = false;
         } else {
@@ -127,7 +127,7 @@ public class ProductsActivity extends AppCompatActivity {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.showSoftInput(editSearch, InputMethodManager.SHOW_IMPLICIT);
 
-            mSearchAction.setIcon(R.drawable.search);
+            mSearchAction.setIcon(getResources().getDrawable(R.drawable.search));
 
             isSearchOpened = true;
 

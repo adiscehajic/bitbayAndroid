@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#0064D2</color>
     <color name="colorAccent">#0064d2</color>
     <color name="colorBit">#0064D2</color>
-    <color name="statusBarColor">#0355b0</color>
+    <color name="statusBarColor">#6db3ff</color>
+    <color name="black">#060606</color>
 </resources>
