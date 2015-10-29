@@ -1,5 +1,6 @@
 package ba.bitcamp.android.bitbay.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,22 +29,22 @@ public class ProductViewActivity extends AppCompatActivity {
         setContentView(R.layout.product_layout);
 
         mProductId = (UUID) getIntent().getSerializableExtra("product_id");
-        Log.d("65", mProductId.toString());
         mProduct = ProductList.get().getProduct(mProductId);
 
         mProductNameView = (TextView) findViewById(R.id.nameView);
         mProductPriceView = (TextView) findViewById(R.id.priceView);
         mProductDescriptionView = (TextView) findViewById(R.id.descriptionView);
 
-        mProductNameView.setText(mProduct.getProductName());
-        mProductPriceView.setText(mProduct.getProductPrice());
-        mProductDescriptionView.setText(mProduct.getmProductDescription());
+//        mProductNameView.setText(mProduct.getProductName());
+//        mProductPriceView.setText(mProduct.getProductPrice());
+//        mProductDescriptionView.setText(mProduct.getmProductDescription());
 
         mBuyButton = (Button) findViewById(R.id.buyButton);
         mBuyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(ProductViewActivity.this, WebViewActivity.class);
+                startActivity(intent);
             }
         });
 
