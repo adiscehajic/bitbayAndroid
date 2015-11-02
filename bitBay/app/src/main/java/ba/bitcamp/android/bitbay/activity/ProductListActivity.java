@@ -24,6 +24,7 @@ import android.support.v7.widget.Toolbar;
 import com.woxthebox.draglistview.DragItemAdapter;
 import com.woxthebox.draglistview.DragListView;
 
+import java.text.Normalizer;
 import java.util.List;
 
 import ba.bitcamp.android.bitbay.Helper;
@@ -163,7 +164,7 @@ public class ProductListActivity extends AppCompatActivity {
     }
 
     private void doSearch(){
-        //TODO
+
     }
 
     public class ProductAdapter extends DragItemAdapter<Product, ProductAdapter.ViewHolder> {

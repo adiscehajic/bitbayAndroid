@@ -23,7 +23,8 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class LoginActivity extends Activity {
+public class
+        LoginActivity extends Activity {
 
     private static final String REQUIRED_MSG = "Required";
 
