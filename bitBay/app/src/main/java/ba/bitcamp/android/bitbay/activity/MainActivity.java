@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.start_up);
 
         mLogin = (Button) findViewById(R.id.mLogin);
         mRegister = (Button) findViewById(R.id.mRegister);

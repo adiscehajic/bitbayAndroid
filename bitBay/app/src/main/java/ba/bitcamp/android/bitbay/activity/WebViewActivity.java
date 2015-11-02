@@ -1,10 +1,10 @@
 package ba.bitcamp.android.bitbay.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 
+import ba.bitcamp.android.bitbay.Helper;
 import ba.bitcamp.android.bitbay.R;
 
 /**
@@ -16,11 +16,11 @@ public class WebViewActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
+        setContentView(R.layout.webview);
 
         webView = (WebView) findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://10.0.82.92:9000/signin");
+        webView.loadUrl(Helper.IP_ADDRESS + "/purchaseprocessing");
     }
 
 }

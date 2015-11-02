@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ba.bitcamp.android.bitbay.Helper;
 import ba.bitcamp.android.bitbay.R;
 import ba.bitcamp.android.bitbay.api.BitBayApi;
 import ba.bitcamp.android.bitbay.model.User;
@@ -44,7 +45,7 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login);
 //
 //        RegisterActivity.users.add(user);
 //        RegisterActivity.users.add(user1);
@@ -57,7 +58,7 @@ public class LoginActivity extends Activity {
         mShowPassword = (CheckBox) findViewById(R.id.lShowPassword);
         mLogin = (Button) findViewById(R.id.lLogin);
 
-        restAdapter = new RestAdapter.Builder().setEndpoint("http://169.254.6.102:9000").build();
+        restAdapter = new RestAdapter.Builder().setEndpoint(Helper.IP_ADDRESS).build();
         api = restAdapter.create(BitBayApi.class);
 
         mForgotPasswordLink = (TextView) findViewById(R.id.lForgotPasswordLink);
@@ -81,15 +82,12 @@ public class LoginActivity extends Activity {
                 api.signIn(String.valueOf(mEmail.getText()), String.valueOf(mPassword.getText()), new Callback<Response>() {
                     @Override
                     public void success(Response response, Response response2) {
-                        int smthing = 0;
                         Intent i = new Intent("android.intent.action.PRODUCTS");
                         startActivity(i);
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-
-                        int smthing = 0;
                         Toast.makeText(LoginActivity.this, "Incorrect email or password, try again!", Toast.LENGTH_SHORT).show();
                     }
                 });

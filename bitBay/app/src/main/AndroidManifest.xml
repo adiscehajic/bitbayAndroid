@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ProductsActivity">
+        <activity android:name=".activity.ProductListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.PRODUCTS" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -55,9 +55,8 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".activity.Profile" >
+        <activity android:name=".activity.UserProfileActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.PROFILE" />
 
