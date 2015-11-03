@@ -14,8 +14,7 @@
         android:layout_marginTop="50dp"
         android:text="First name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorBit"/>
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/rFirstName"
@@ -26,8 +25,7 @@
     <TextView
         android:text="Last name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorBit"/>
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/rLastName"
@@ -39,8 +37,7 @@
     <TextView
         android:text="Email"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorBit" />
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/rEmail"
@@ -52,9 +49,7 @@
     <TextView
         android:text="Password"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorBit"
-        />
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/rPassword"
@@ -66,25 +61,20 @@
     <TextView
         android:text="Confirm password"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorBit"/>
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/rConfirmPassword"
         android:layout_width="match_parent"
         android:inputType="textPassword"
         android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/rRegister"
         android:layout_width="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:background="@drawable/button_border"
-        android:textColor="@color/colorBit"
-        />
+        android:text="Register" />
 
 </LinearLayout>
