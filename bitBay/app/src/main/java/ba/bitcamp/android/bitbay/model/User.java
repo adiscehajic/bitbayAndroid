@@ -24,6 +24,7 @@ public class User {
     public String confirmPassword;
     @SerializedName("phoneNumber")
     public String phoneNumber;
+    @SerializedName("image")
     public Image userImage;
 
     public User(){
@@ -39,10 +40,19 @@ public class User {
       //  this.userType = userType;
     }
 
+    public Image getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(Image userImage) {
+        this.userImage = userImage;
+    }
+
     public User(String firstName, String lastName, String email, String password) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
+
         this.lastName = lastName;
     }
 

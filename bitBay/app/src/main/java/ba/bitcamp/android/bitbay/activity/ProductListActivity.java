@@ -1,6 +1,7 @@
 package ba.bitcamp.android.bitbay.activity;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.app.ActionBar;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ba.bitcamp.android.bitbay.Helper;
+import ba.bitcamp.android.bitbay.LoadImage;
 import ba.bitcamp.android.bitbay.api.BitBayApi;
 import ba.bitcamp.android.bitbay.model.Product;
 import ba.bitcamp.android.bitbay.R;
@@ -222,7 +225,10 @@ public class ProductListActivity extends AppCompatActivity {
         public void onBindViewHolder(final ViewHolder holder, final int position) {
             super.onBindViewHolder(holder, position);
             holder.productName.setText(mItemList.get(position).getProductName());
-            holder.productPrice.setText(mItemList.get(position).getProductPrice());
+            holder.productPrice.setText(mItemList.get(position).getProductPrice() + " KM");
+            if(mItemList.get(position).getmProductImage() !=  null) {
+                new LoadImage(holder.productImage).execute(mItemList.get(position).getmProductImage().url);
+            }
             holder.itemView.setTag(mItemList.get(position).getId());
         }
 
@@ -235,12 +241,14 @@ public class ProductListActivity extends AppCompatActivity {
 
             public TextView productPrice;
             public TextView productName;
+            public ImageView productImage;
 
             public ViewHolder(final View itemView) {
                 super(itemView, mGrabHandleId);
                 itemView.setLongClickable(false);
                 productPrice = (TextView) itemView.findViewById(R.id.product_price);
                 productName = (TextView) itemView.findViewById(R.id.product_name);
+                productImage = (ImageView) itemView.findViewById(R.id.fragment_image);
             }
 
             @Override

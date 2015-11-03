@@ -11,15 +11,20 @@
         android:layout_gravity="center_horizontal">
 
         <LinearLayout
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
             android:orientation="vertical"
             android:layout_width="200dp"
-            android:layout_height="101dp">
+            android:layout_height="101dp"
+            android:background="@drawable/button_border">
 
             <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/fragment_image"
-                android:src="@drawable/ps3a"/>
+                />
         </LinearLayout>
 
         <LinearLayout

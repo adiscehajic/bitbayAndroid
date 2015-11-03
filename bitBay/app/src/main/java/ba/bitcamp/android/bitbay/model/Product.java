@@ -73,8 +73,11 @@ public class Product {
         this.mProductPrice = mProductPrice;
     }
 
-    public List<Image> getmProductImages() {
-        return mProductImages;
+    public Image getmProductImage() {
+        if(mProductImages.size() > 0) {
+            return mProductImages.get(0);
+        }
+        return null;
     }
 
     public void setmProductImages(List<Image> mProductImages) {
