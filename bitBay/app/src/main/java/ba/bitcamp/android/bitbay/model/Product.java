@@ -2,12 +2,15 @@ package ba.bitcamp.android.bitbay.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 import java.util.List;
 import java.util.UUID;
 
 /**
  * Created by senadin.botic on 27/10/15.
  */
+@Parcel
 public class Product {
     public UUID mId;
     @SerializedName("id")

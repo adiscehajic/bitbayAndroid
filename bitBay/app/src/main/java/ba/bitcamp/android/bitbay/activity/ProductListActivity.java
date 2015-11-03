@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,6 +27,7 @@ import com.woxthebox.draglistview.DragItemAdapter;
 import com.woxthebox.draglistview.DragListView;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.List;
 
 import ba.bitcamp.android.bitbay.Helper;
@@ -49,6 +52,7 @@ public class ProductListActivity extends AppCompatActivity {
     private boolean isSearchOpened = false;
     private Toolbar mToolbar;
 
+    public static List<Product> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,8 @@ public class ProductListActivity extends AppCompatActivity {
                 mProductsList = (DragListView) findViewById(R.id.product_list);
                 mProductsList.setLayoutManager(new GridLayoutManager(getApplication(), 1));
                 mProductsList.setAdapter(productAdapter, true);
+
+                productList = products;
             }
 
             @Override
@@ -129,27 +135,56 @@ public class ProductListActivity extends AppCompatActivity {
             action.setCustomView(R.layout.search_bar);
             action.setDisplayShowTitleEnabled(false);
 
-
-
             editSearch = (EditText)action.getCustomView().findViewById(R.id.editSearch);
-            editSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            editSearch.addTextChangedListener(new TextWatcher() {
                 @Override
-                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    if (actionId == EditorInfo.IME_ACTION_DONE) {
-                        doSearch();
-                        return true;
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    List<Product> list = new ArrayList<Product>();
+
+                    for (int i = 0; i < productList.size(); i++) {
+                        list.add(productList.get(i));
                     }
-                    return false;
+                    productAdapter.notifyDataSetChanged();
+                    if (s.length() != 0) {
+                        int size = list.size();
+                        int i = 0;
+                        while (i < size) {
+                            if (!(list.get(i).getProductName().toLowerCase().contains(s.toString().toLowerCase()))) {
+                                list.remove(i);
+                                size--;
+                            } else {
+                                i++;
+                            }
+                        }
+                        productAdapter = new ProductAdapter(list, R.layout.product_fragment, R.id.product_layout, true);
+                        mProductsList = (DragListView) findViewById(R.id.product_list);
+                        mProductsList.setAdapter(productAdapter, true);
+                        mProductsList.setLayoutManager(new GridLayoutManager(getApplication(), 1));
+                    } else {
+                        productAdapter = new ProductAdapter(productList, R.layout.product_fragment, R.id.product_layout, true);
+                        mProductsList = (DragListView) findViewById(R.id.product_list);
+                        mProductsList.setAdapter(productAdapter, true);
+                        mProductsList.setLayoutManager(new GridLayoutManager(getApplication(), 1));
+                    }
                 }
             });
-
             editSearch.requestFocus();
 
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.showSoftInput(editSearch, InputMethodManager.SHOW_IMPLICIT);
 
             mSearchAction.setIcon(getResources().getDrawable(R.drawable.search));
-
             isSearchOpened = true;
         }
     }
@@ -161,10 +196,6 @@ public class ProductListActivity extends AppCompatActivity {
             return;
         }
         super.onBackPressed();
-    }
-
-    private void doSearch(){
-
     }
 
     public class ProductAdapter extends DragItemAdapter<Product, ProductAdapter.ViewHolder> {

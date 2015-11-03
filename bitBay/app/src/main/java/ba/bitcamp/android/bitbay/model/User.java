@@ -2,16 +2,29 @@ package ba.bitcamp.android.bitbay.model;
 
 import android.content.Intent;
 
+import com.google.gson.annotations.SerializedName;
+
+import org.parceler.Parcel;
+
 /**
  * Created by senadin.botic on 21/10/15.
  */
+@Parcel
 public class User {
+
+    @SerializedName("firstName")
     public String firstName;
+    @SerializedName("lastName")
     public String lastName;
+    @SerializedName("email")
     public String email;
+    @SerializedName("password")
     public String password;
+    @SerializedName("confirmPassword")
     public String confirmPassword;
-   // public UserType userType;
+    @SerializedName("phoneNumber")
+    public String phoneNumber;
+    public Image userImage;
 
     public User(){
 
@@ -40,8 +53,6 @@ public class User {
 
         public Integer id;
         public String name;
-
-
     }
 
     public String getFirstName() {
@@ -81,5 +92,14 @@ public class User {
     }
 
     public void setConfirmPassword(String confirmPassword) {this.confirmPassword = confirmPassword;
+
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

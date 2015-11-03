@@ -3,6 +3,7 @@ package ba.bitcamp.android.bitbay.api;
 import java.util.List;
 
 import ba.bitcamp.android.bitbay.model.Product;
+import ba.bitcamp.android.bitbay.model.User;
 import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.GET;
@@ -17,7 +18,7 @@ public interface BitBayApi {
 
     @GET("/api/signin")
     void signIn(@Query("email") String email, @Query("password") String password,
-                Callback<Response> callback);
+                Callback<User> callback);
 
     @GET("/api/signup")
     public void signUp(@Query("email") String email, @Query("firstName") String firstName,
