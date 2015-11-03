@@ -5,10 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import ba.bitcamp.android.bitbay.LoadImage;
 import ba.bitcamp.android.bitbay.R;
 import ba.bitcamp.android.bitbay.model.User;
 
@@ -17,6 +19,7 @@ import ba.bitcamp.android.bitbay.model.User;
  */
 public class UserProfileActivity extends AppCompatActivity {
 
+    private ImageView userImage;
     private Toolbar mToolbar;
     private TextView firstName;
     private TextView lastName;
@@ -32,6 +35,7 @@ public class UserProfileActivity extends AppCompatActivity {
         lastName = (TextView) findViewById(R.id.lastName);
         email = (TextView) findViewById(R.id.email);
         phone = (TextView) findViewById(R.id.phone_number);
+        userImage = (ImageView) findViewById(R.id.imageView);
 
         SharedPreferences sh = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         Gson gson = new Gson();
@@ -42,6 +46,9 @@ public class UserProfileActivity extends AppCompatActivity {
         lastName.setText(user.getLastName());
         email.setText(user.getEmail());
         phone.setText(user.getPhoneNumber());
+        if(user.getUserImage() != null) {
+            new LoadImage(userImage).execute(user.getUserImage().url);
+        }
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
