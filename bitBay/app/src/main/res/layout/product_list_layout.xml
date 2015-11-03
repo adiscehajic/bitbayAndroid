@@ -6,27 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".Products">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar">
-    </include>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="70dp"
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:orientation="vertical"
         android:gravity="center"
-        tools:context="ba.bitcamp.android.bitbay.activity.ProductListActivity">
+        tools:context="ba.bitcamp.android.bitbay.activity.ProductsActivity">
 
-        <com.woxthebox.draglistview.DragListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/product_list">
-        </com.woxthebox.draglistview.DragListView>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Our Products"
+           android:textSize="40sp"
+           android:gravity="center"
+           android:background="@drawable/button_border"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"/>
 
     </LinearLayout>
 

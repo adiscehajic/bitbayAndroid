@@ -1,9 +1,7 @@
 package ba.bitcamp.android.bitbay.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -15,9 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import ba.bitcamp.android.bitbay.Helper;
 import ba.bitcamp.android.bitbay.R;
 import ba.bitcamp.android.bitbay.api.BitBayApi;
 import ba.bitcamp.android.bitbay.model.User;
@@ -27,8 +22,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class
-        LoginActivity extends Activity {
+public class LoginActivity extends Activity {
 
     private static final String REQUIRED_MSG = "Required";
 
@@ -50,7 +44,7 @@ public class
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
 //
 //        RegisterActivity.users.add(user);
 //        RegisterActivity.users.add(user1);
@@ -63,7 +57,7 @@ public class
         mShowPassword = (CheckBox) findViewById(R.id.lShowPassword);
         mLogin = (Button) findViewById(R.id.lLogin);
 
-        restAdapter = new RestAdapter.Builder().setEndpoint(Helper.IP_ADDRESS).build();
+        restAdapter = new RestAdapter.Builder().setEndpoint("http://10.202.24.13:9000").build();
         api = restAdapter.create(BitBayApi.class);
 
         mForgotPasswordLink = (TextView) findViewById(R.id.lForgotPasswordLink);
@@ -84,22 +78,17 @@ public class
                 String email = String.valueOf(mEmail.getText());
                 String password = String.valueOf(mPassword.getText());
 
-                api.signIn(String.valueOf(mEmail.getText()), String.valueOf(mPassword.getText()), new Callback<User>() {
+                api.signIn(String.valueOf(mEmail.getText()), String.valueOf(mPassword.getText()), new Callback<Response>() {
                     @Override
-                    public void success(User user, Response response2) {
-                        SharedPreferences sp = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sp.edit();
-                        Gson gson = new Gson();
-                        String json = gson.toJson(user);
-                        editor.putString("User", json);
-                        editor.commit();
-
+                    public void success(Response response, Response response2) {
+                        int smthing = 0;
                         Intent i = new Intent("android.intent.action.PRODUCTS");
                         startActivity(i);
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                        int smthing = 0;
                         Toast.makeText(LoginActivity.this, "Incorrect email or password, try again!", Toast.LENGTH_SHORT).show();
                     }
                 });

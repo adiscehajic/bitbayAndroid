@@ -30,7 +30,6 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.5.0'
     compile 'com.google.code.gson:gson:2.3'
     compile 'org.parceler:parceler:0.2.13'
-    compile 'com.github.woxthebox:draglistview:1.1.4'
 }
 
 android {

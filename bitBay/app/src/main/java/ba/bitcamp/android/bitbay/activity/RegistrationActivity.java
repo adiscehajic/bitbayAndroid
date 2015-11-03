@@ -11,7 +11,6 @@ import android.widget.Toast;
 import java.util.LinkedList;
 import java.util.List;
 
-import ba.bitcamp.android.bitbay.Helper;
 import ba.bitcamp.android.bitbay.R;
 import ba.bitcamp.android.bitbay.api.BitBayApi;
 import ba.bitcamp.android.bitbay.model.User;
@@ -49,7 +48,7 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.activity_register);
 
         rFirstName = (EditText) findViewById(R.id.rFirstName);
         rLastName = (EditText) findViewById(R.id.rLastName);
@@ -59,7 +58,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         rRegister = (Button) findViewById(R.id.rRegister);
 
-        restAdapter = new RestAdapter.Builder().setEndpoint(Helper.IP_ADDRESS).build();
+        restAdapter = new RestAdapter.Builder().setEndpoint("http://10.202.24.13:9000").build();
         api = restAdapter.create(BitBayApi.class);
 
         rRegister.setOnClickListener(new View.OnClickListener() {

@@ -41,34 +41,18 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ProductListActivity">
+        <activity android:name=".activity.ProductsActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.PRODUCTS" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name=".activity.ProductViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.PRODUCT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            android:name=".activity.ProductViewActivity"
+            android:label="@string/title_activity_product_view"
+            android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name=".activity.UserProfileActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.PROFILE" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.WebViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.WEBVIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            </activity>
     </application>
 
 </manifest>
