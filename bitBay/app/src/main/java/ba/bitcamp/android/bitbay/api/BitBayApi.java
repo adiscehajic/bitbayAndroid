@@ -31,5 +31,12 @@ public interface BitBayApi {
 
     @GET("/api/product/{id}")
     public void getProductById(@Path("id") int id, Callback<Product> callback);
+
+    @GET("/api/purchaseprocessing/{productId}")
+    public void paypal(@Path("productId") Integer productId, @Query("userId") Integer id, Callback<Response> callback);
+
+//    @GET("/api/purchaseprocessing/{productId}")
+//    public void paypal(@Path("productId") Integer productId, @Query("userId") Integer id, @Query("ipAddress") String ipAddress, Callback<Response> callback);
+
 }
 

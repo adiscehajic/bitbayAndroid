@@ -12,6 +12,8 @@ import org.parceler.Parcel;
 @Parcel
 public class User {
 
+    @SerializedName("id")
+    private Integer id;
     @SerializedName("firstName")
     public String firstName;
     @SerializedName("lastName")
@@ -63,6 +65,10 @@ public class User {
 
         public Integer id;
         public String name;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getFirstName() {
