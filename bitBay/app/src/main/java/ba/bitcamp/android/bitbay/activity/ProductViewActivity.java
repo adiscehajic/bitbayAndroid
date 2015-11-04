@@ -1,6 +1,8 @@
 package ba.bitcamp.android.bitbay.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.UUID;
@@ -22,6 +26,7 @@ import ba.bitcamp.android.bitbay.api.BitBayApi;
 import ba.bitcamp.android.bitbay.model.Image;
 import ba.bitcamp.android.bitbay.model.Product;
 import ba.bitcamp.android.bitbay.R;
+import ba.bitcamp.android.bitbay.model.User;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -35,6 +40,8 @@ public class ProductViewActivity extends AppCompatActivity {
     private TextView mProductDescriptionView;
     private Button mBuyButton;
 
+    private int productId;
+    private User user;
     private RestAdapter restAdapter;
     private BitBayApi api;
 
@@ -43,18 +50,24 @@ public class ProductViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_profile);
 
+        SharedPreferences sh = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sh.getString("User", "");
+        user = gson.fromJson(json, User.class);
+
+
         mProductNameView = (TextView) findViewById(R.id.nameView);
         mProductPriceView = (TextView) findViewById(R.id.priceView);
         mProductDescriptionView = (TextView) findViewById(R.id.descriptionView);
         mProductImage = (ImageView) findViewById(R.id.product_image);
 
-        int id = getIntent().getExtras().getInt("id");
+        productId = getIntent().getExtras().getInt("id");
 
         restAdapter = new RestAdapter.Builder().setEndpoint(Helper.IP_ADDRESS).build();
         api = restAdapter.create(BitBayApi.class);
 
 
-        api.getProductById(id, new Callback<Product>() {
+        api.getProductById(productId, new Callback<Product>() {
             @Override
             public void success(Product product, Response response2) {
                 if(product.getmProductImage() != null) {
@@ -74,7 +87,9 @@ public class ProductViewActivity extends AppCompatActivity {
         mBuyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductViewActivity.this, WebViewActivity.class);
+                Intent intent = new Intent(ProductViewActivity.this, PaypalActivity.class);
+                String url = Helper.IP_ADDRESS + "/api/purchaseprocessing/" + productId + "?userId=" + user.getId() + "&ipAddress=" + Helper.IP_ADDRESS;
+                intent.putExtra("url", url);
                 startActivity(intent);
             }
         });
