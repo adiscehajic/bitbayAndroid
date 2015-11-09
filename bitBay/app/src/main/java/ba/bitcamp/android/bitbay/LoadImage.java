@@ -1,17 +1,15 @@
 package ba.bitcamp.android.bitbay;
 
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import java.io.InputStream;
 import java.net.URL;
 
 /**
- * Created by Kerim on 3.11.2015.
+ * This class is used to load image from our url on ImageView that we chose
  */
 public class LoadImage extends AsyncTask<String, String, Bitmap> {
 

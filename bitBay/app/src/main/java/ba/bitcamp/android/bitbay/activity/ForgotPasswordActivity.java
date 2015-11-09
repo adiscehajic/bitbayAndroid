@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import ba.bitcamp.android.bitbay.R;
 
+/**
+ * This class is used to load forgot password view - layout
+ */
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     @Override

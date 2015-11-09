@@ -26,9 +26,10 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-
-public class
-        LoginActivity extends Activity {
+/**
+ * This class is used to lead login view - layout, and handle activities on it.
+ */
+public class LoginActivity extends Activity {
 
     private static final String REQUIRED_MSG = "Required";
 
@@ -41,23 +42,12 @@ public class
     private RestAdapter restAdapter;
     private BitBayApi api;
 
-    User user = new User("Senadin", "Botic", "senadin.botic@bitcamp.ba", "12345678");
-    User user1 = new User("Adis", "Cehajic", "adis.cehajic@bitcamp.ba", "12345678");
-    User user2 = new User("Adnan", "Lapendic", "adnan.lapendic@bitcamp.ba", "12345678");
-    User user3 = new User("Kerim", "Dragolj", "kerim.dragolj@bitcamp.ba", "12345678");
-    User user4 = new User("Medina", "Banjic", "medina.banjic@bitcamp.ba", "12345678");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-//
-//        RegisterActivity.users.add(user);
-//        RegisterActivity.users.add(user1);
-//        RegisterActivity.users.add(user2);
-//        RegisterActivity.users.add(user3);
-//        RegisterActivity.users.add(user4);
 
+        //Load all views from layout that we need
         mEmail = (EditText) findViewById(R.id.lEmail);
         mPassword = (EditText) findViewById(R.id.lPassword);
         mShowPassword = (CheckBox) findViewById(R.id.lShowPassword);
@@ -67,6 +57,8 @@ public class
         api = restAdapter.create(BitBayApi.class);
 
         mForgotPasswordLink = (TextView) findViewById(R.id.lForgotPasswordLink);
+        //setting listener on checkbox, if its checked it will show password,
+        // if its not password will be hidden
         mShowPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -78,28 +70,33 @@ public class
             }
         });
 
+        //setting on click listener on login button
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //if its clicked, pick valued that are inserted on edit text views
                 String email = String.valueOf(mEmail.getText());
                 String password = String.valueOf(mPassword.getText());
 
+                //check if they are correct
                 api.signIn(String.valueOf(mEmail.getText()), String.valueOf(mPassword.getText()), new Callback<User>() {
                     @Override
                     public void success(User user, Response response2) {
+                        //if inputs are correct, pass that user as json
                         SharedPreferences sp = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sp.edit();
                         Gson gson = new Gson();
                         String json = gson.toJson(user);
                         editor.putString("User", json);
                         editor.commit();
-
+                        //and load new view
                         Intent i = new Intent("android.intent.action.PRODUCTS");
                         startActivity(i);
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                        //if inputs are incorrect, show toast with error message "Incorrect email..."
                         Toast.makeText(LoginActivity.this, "Incorrect email or password, try again!", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -107,9 +104,11 @@ public class
             }
         });
 
+        //setting on click listener on forgot password link
         mForgotPasswordLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //if its clicked just load new view
                 Intent forgotPasswordIntent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(forgotPasswordIntent);
             }

@@ -8,18 +8,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import ba.bitcamp.android.bitbay.Helper;
 import ba.bitcamp.android.bitbay.R;
 import ba.bitcamp.android.bitbay.api.BitBayApi;
-import ba.bitcamp.android.bitbay.model.User;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+/**
+ * This class is used to load registration layout and handle activities on it.
+ */
 public class RegistrationActivity extends AppCompatActivity {
 
     private static final String REQUIRED_MSG = "Required";
@@ -34,23 +33,12 @@ public class RegistrationActivity extends AppCompatActivity {
     private RestAdapter restAdapter;
     private BitBayApi api;
 
-    public static List<User> users = new LinkedList<User>();
-
-    public static List<User> getUsers() {
-        return users;
-    }
-    public static void setUsers() {
-        RegistrationActivity.users = users;
-    }
-    public static void addUser(User user) {
-        RegistrationActivity.users.add(user);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
+        //get all views from layout that we need to handle
         rFirstName = (EditText) findViewById(R.id.rFirstName);
         rLastName = (EditText) findViewById(R.id.rLastName);
         rEmail = (EditText) findViewById(R.id.rEmail);
@@ -62,16 +50,19 @@ public class RegistrationActivity extends AppCompatActivity {
         restAdapter = new RestAdapter.Builder().setEndpoint(Helper.IP_ADDRESS).build();
         api = restAdapter.create(BitBayApi.class);
 
+        //set on click listener on registration button
         rRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                //if its clicked collect all data from EditText views
                 String firstName = rFirstName.getText().toString();
                 String lastName = rLastName.getText().toString();
                 String email = rEmail.getText().toString();
                 String password = rPassword.getText().toString();
                 String confirmPassword = rConfirmPassword.getText().toString();
 
+                //validate all of them
                 if (validateEmail(email)) {
                     if (onlyLetters(firstName)) {
                         if (onlyLetters(lastName)) {
@@ -82,14 +73,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
                                             @Override
                                             public void success(Response response, Response response2) {
-                                                int smthing = 0;
+                                                //if inputs are correct load new layout
                                                 Intent i = new Intent("android.intent.action.LOGIN");
                                                 startActivity(i);
                                             }
 
                                             @Override
                                             public void failure(RetrofitError error) {
-                                                int smthing = 0;
+                                                //if only if inputs didnt pass validation, throw this toast
                                                 Toast.makeText(RegistrationActivity.this, "Registration failed, try again.", Toast.LENGTH_SHORT).show();
                                             }
                                         });
@@ -102,7 +93,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * This method validates if email field is empty or not.
+     * @param email
+     * @return true or false
+     */
     private boolean validateEmail(String email) {
         if (email.equals("")) {
             hasText(rEmail);
@@ -111,6 +106,12 @@ public class RegistrationActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * This method validates if firstname and lastname only contains letters, and if its not empty
+     * or shorter than 2 chars
+     * @param letter
+     * @return true or false
+     */
     private boolean onlyLetters(String letter) {
         if (letter.equals("") || letter.equals("")) {
             hasText(rFirstName);
@@ -126,6 +127,13 @@ public class RegistrationActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * This method checks if inserted password and confirmation of password matches, if they are
+     * empty and if they contain atleast 8 characters.
+     * @param password
+     * @param cofirmPassword
+     * @return true or false
+     */
     private boolean passwordMatch(String password, String cofirmPassword) {
         if (password.equals("") || cofirmPassword.equals("")) {
             hasText(rPassword);
@@ -144,9 +152,12 @@ public class RegistrationActivity extends AppCompatActivity {
         return true;
     }
 
-
+    /**
+     * This method checks if passed EditText view contains anything
+     * @param editText
+     * @return true or false
+     */
     public static boolean hasText(EditText editText) {
-
         String text = editText.getText().toString().trim();
         editText.setError(null);
 
@@ -154,7 +165,6 @@ public class RegistrationActivity extends AppCompatActivity {
             editText.setError(REQUIRED_MSG);
             return false;
         }
-
         return true;
     }
 
