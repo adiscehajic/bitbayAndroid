@@ -12,7 +12,9 @@ import retrofit.http.Path;
 import retrofit.http.Query;
 
 /**
- * Created by Kerim on 25.10.2015.
+ * This interface is used to connect with rest service. It contains anotations - @GET or @POST, or
+ * any other http request and it contains route where we connect to collect data. In methods
+ * we use @Query to get or send data using form ids, or @Path for dynamic routes.
  */
 public interface BitBayApi {
 
@@ -34,9 +36,6 @@ public interface BitBayApi {
 
     @GET("/api/purchaseprocessing/{productId}")
     public void paypal(@Path("productId") Integer productId, @Query("userId") Integer id, Callback<Response> callback);
-
-//    @GET("/api/purchaseprocessing/{productId}")
-//    public void paypal(@Path("productId") Integer productId, @Query("userId") Integer id, @Query("ipAddress") String ipAddress, Callback<Response> callback);
 
 }
 

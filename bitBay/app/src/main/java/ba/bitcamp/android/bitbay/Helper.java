@@ -1,7 +1,7 @@
 package ba.bitcamp.android.bitbay;
 
 /**
- * Created by Kerim on 30.10.2015.
+ * Class for helpers.
  */
 public class Helper {
     public static final String IP_ADDRESS = "http://10.202.21.198:9000";
