@@ -32,31 +32,29 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
 
-        //Getting views from this layout that needs to be handled
+        //get views that need to modify
         firstName = (TextView) findViewById(R.id.firstName);
         lastName = (TextView) findViewById(R.id.lastName);
         email = (TextView) findViewById(R.id.email);
         phone = (TextView) findViewById(R.id.phone_number);
         userImage = (ImageView) findViewById(R.id.imageView);
 
-        //gets user that we saved when we logged in
+        //get user that we saved before
         SharedPreferences sh = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sh.getString("User", "");
         User user = gson.fromJson(json, User.class);
 
-        //setting values on views from user that we got above
+        //set changes on views that we found above by theirs ids
         firstName.setText(user.getFirstName());
         lastName.setText(user.getLastName());
         email.setText(user.getEmail());
         phone.setText(user.getPhoneNumber());
-
-        //if user has image, set it on view.
-        //if he doesnt keep current - imageholder.
         if(user.getUserImage() != null) {
             new LoadImage(userImage).execute(user.getUserImage().url);
         }
 
+        //find toolbar by its id and set title on it
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("User profile");
