@@ -23,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import com.woxthebox.draglistview.DragItemAdapter;
 import com.woxthebox.draglistview.DragListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ba.bitcamp.android.bitbay.Helper;
@@ -73,7 +74,7 @@ public class ProductListActivity extends AppCompatActivity {
             public void success(List<Product> products, Response response2) {
                 //set each of those products on fragment on our layout
                 productAdapter = new ProductAdapter(products, R.layout.product_fragment, R.id.product_layout, true);
-                //find layout and set grid layout on it.
+                //find layout and set grid layout on it, so we have 1 item per column.
                 mProductsList = (DragListView) findViewById(R.id.product_list);
                 mProductsList.setLayoutManager(new GridLayoutManager(getApplication(), 1));
                 mProductsList.setAdapter(productAdapter, true);
@@ -109,7 +110,7 @@ public class ProductListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.profile: //if we clicked on "profile" load layot that shows users profile
+            case R.id.profile:  //if we clicked on "profile" load layot that shows users profile
                 Intent profileIntent = new Intent(ProductListActivity.this, UserProfileActivity.class);
                 startActivity(profileIntent);
                 return true;
@@ -118,7 +119,7 @@ public class ProductListActivity extends AppCompatActivity {
                 Toast.makeText(ProductListActivity.this, "Successful logout", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 return true;
-            case R.id.search://if we clicked on search icon, call method that handles search
+            case R.id.search: //if we clicked on search icon, call method that handles search
                 handleMenuSearch();
                 return true;
         }
@@ -153,19 +154,23 @@ public class ProductListActivity extends AppCompatActivity {
                 //do before inputs in search (text change)
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
 
+                }
                 //do while text is being changed
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                }
 
+
+                }
                 //do after inputs (text changed)
                 @Override
                 public void afterTextChanged(Editable s) {
-                    List<Product> list = productList;
-                    productAdapter.notifyDataSetChanged();
+                    List<Product> list = new ArrayList<Product>();
 
+                    for (int i = 0; i < productList.size(); i++) {
+                        list.add(productList.get(i));
+                    }
+                    productAdapter.notifyDataSetChanged();
                     //with every character inserted into search check if current string
                     //is not null and if its contained
                     if (s.length() != 0) {
@@ -254,16 +259,19 @@ public class ProductListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
             super.onBindViewHolder(holder, position);
-
             //set values on views that we collected above for each item from list
             holder.productName.setText(mItemList.get(position).getProductName());
             holder.productPrice.setText(mItemList.get(position).getProductPrice() + " KM");
-            holder.itemView.setTag(mItemList.get(position).getId()); //set tag as product id
-
             //if product has any images, set it
             if(mItemList.get(position).getmProductImage() !=  null) {
                 new LoadImage(holder.productImage).execute(mItemList.get(position).getmProductImage().url);
             }
+            holder.itemView.setTag(mItemList.get(position).getId());
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return mItemList.get(position).getId();
         }
 
         /**
