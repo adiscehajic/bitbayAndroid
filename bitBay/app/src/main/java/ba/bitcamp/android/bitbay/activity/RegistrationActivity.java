@@ -56,16 +56,15 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //if its clicked collect all data from EditText views
-                String firstName = rFirstName.getText().toString();
-                String lastName = rLastName.getText().toString();
-                String email = rEmail.getText().toString();
-                String password = rPassword.getText().toString();
-                String confirmPassword = rConfirmPassword.getText().toString();
+                final String firstName = rFirstName.getText().toString();
+                final String lastName = rLastName.getText().toString();
+                final String email = rEmail.getText().toString();
+                final String password = rPassword.getText().toString();
+                final String confirmPassword = rConfirmPassword.getText().toString();
 
                 //validate all of them
                 if (validateEmail(email)) {
-                    if (onlyLetters(firstName)) {
-                        if (onlyLetters(lastName)) {
+                    if (onlyLetters(firstName, lastName)) {
                             if (passwordMatch(password, confirmPassword)) {
                                 api.signUp(String.valueOf(rEmail.getText()), String.valueOf(rFirstName.getText()),
                                         String.valueOf(rLastName.getText()), String.valueOf(rPassword.getText()),
@@ -75,6 +74,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                             public void success(Response response, Response response2) {
                                                 //if inputs are correct load new layout
                                                 Intent i = new Intent("android.intent.action.LOGIN");
+                                                Toast.makeText(RegistrationActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
                                                 startActivity(i);
                                             }
 
@@ -86,7 +86,6 @@ public class RegistrationActivity extends AppCompatActivity {
                                         });
                             }
                         }
-                    }
                 }
             }
         });
@@ -108,22 +107,23 @@ public class RegistrationActivity extends AppCompatActivity {
 
     /**
      * This method validates if firstname and lastname only contains letters, and if its not empty
-     * or shorter than 2 chars
-     * @param letter
+     * @param
      * @return true or false
      */
-    private boolean onlyLetters(String letter) {
-        if (letter.equals("") || letter.equals("")) {
-            hasText(rFirstName);
-            hasText(rLastName);
+    private boolean onlyLetters(String firstName, String lastName) {
+        if (firstName.equals("") || lastName.equals("") ) {
             return false;
         }
 
-        if (!letter.matches("[a-zA-Z]+") && letter.length() > 2) {
-            Toast.makeText(RegistrationActivity.this, "This field can only contain letters.", Toast.LENGTH_SHORT).show();
+        if (!firstName.matches("[a-zA-Z]+")) {
+            Toast.makeText(RegistrationActivity.this, "Name can only contain letters.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
+        if (!lastName.matches("[a-zA-Z]+")) {
+            Toast.makeText(RegistrationActivity.this, "Last name can only contain letters.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
@@ -136,8 +136,6 @@ public class RegistrationActivity extends AppCompatActivity {
      */
     private boolean passwordMatch(String password, String cofirmPassword) {
         if (password.equals("") || cofirmPassword.equals("")) {
-            hasText(rPassword);
-            hasText(rConfirmPassword);
             return false;
         }
 

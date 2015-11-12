@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="First name: "
+                    android:text="@string/first_name_user"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Last name: "
+                    android:text="@string/last_name_user"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -116,7 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Email: "
+                    android:text="@string/email_user"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -140,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Country: "
+                    android:text="@string/country_user"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -166,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Type: "
+                    android:text="@string/type_user"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -191,7 +191,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Phone number: "
+                    android:text="@string/phone_number_user"
                     android:textStyle="bold"
                     android:gravity="center"/>
 

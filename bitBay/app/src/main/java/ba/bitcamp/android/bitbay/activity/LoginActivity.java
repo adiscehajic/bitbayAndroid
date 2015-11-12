@@ -75,8 +75,9 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //if its clicked, pick valued that are inserted on edit text views
-                String email = String.valueOf(mEmail.getText());
-                String password = String.valueOf(mPassword.getText());
+                final String email = String.valueOf(mEmail.getText());
+                final String password = String.valueOf(mPassword.getText());
+
 
                 //check if they are correct
                 api.signIn(String.valueOf(mEmail.getText()), String.valueOf(mPassword.getText()), new Callback<User>() {
@@ -96,8 +97,13 @@ public class LoginActivity extends Activity {
 
                     @Override
                     public void failure(RetrofitError error) {
-                        //if inputs are incorrect, show toast with error message "Incorrect email..."
-                        Toast.makeText(LoginActivity.this, "Incorrect email or password, try again!", Toast.LENGTH_SHORT).show();
+                        if (email.equals("") || password.equals("")) {
+                            hasText(mEmail);
+                            hasText(mPassword);
+                        } else {
+                            //if inputs are incorrect, show toast with error message "Incorrect email..."
+                            Toast.makeText(LoginActivity.this, "Incorrect email or password, try again!", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 

@@ -17,7 +17,7 @@
 
         <TextView
             android:layout_marginTop="50dp"
-            android:text="First name"
+            android:text="@string/first_name_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBit"/>
@@ -25,12 +25,13 @@
         <EditText
             android:id="@+id/rFirstName"
             android:layout_width="match_parent"
-            android:inputType="text"
+            android:inputType="textCapWords"
             android:layout_marginBottom="10dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
 
         <TextView
-            android:text="Last name"
+            android:text="@string/last_name_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBit"/>
@@ -38,13 +39,14 @@
         <EditText
             android:id="@+id/rLastName"
             android:layout_width="match_parent"
-            android:inputType="text"
+            android:inputType="textCapWords"
             android:layout_marginBottom="10dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center" />
 
 
         <TextView
-            android:text="Email"
+            android:text="@string/email_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBit"/>
@@ -54,10 +56,11 @@
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
 
         <TextView
-            android:text="Password"
+            android:text="@string/password_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBit"/>
@@ -67,10 +70,11 @@
             android:layout_width="match_parent"
             android:inputType="textPassword"
             android:layout_marginBottom="10dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:gravity="center" />
 
         <TextView
-            android:text="Confirm password"
+            android:text="@string/confirm_password_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBit"/>
@@ -81,14 +85,14 @@
             android:inputType="textPassword"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            />
+            android:gravity="center" />
 
         <Button
             android:id="@+id/rRegister"
             android:layout_width="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/register_register"
             android:background="@drawable/button_border"
             android:textColor="@color/colorBit"
             />

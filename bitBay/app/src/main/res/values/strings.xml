@@ -3,4 +3,37 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_product_view">ProductView</string>
     <string name="search_hint">Search</string>
+
+    <!--StartUp-->
+    <string name="welcome_message">Sign in to view your bitBay activity</string>
+    <string name="sing_in">Sign in</string>
+    <string name="sing_up">Sign up</string>
+
+
+    <!--Login-->
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="show_password">Show password</string>
+    <string name="login_button">Login</string>
+    <string name="forgot_password">Forgot password ?</string>
+
+    <!--Register-->
+    <string name="first_name_register">First name</string>
+    <string name="last_name_register">Last name</string>
+    <string name="email_register">Email</string>
+    <string name="password_register">Password</string>
+    <string name="confirm_password_register">Confirm password</string>
+    <string name="register_register">Register</string>
+
+    <!--ForgotPassword-->
+    <string name="enter_email">Enter email address</string>
+    <string name="continue_forgot">Continue</string>
+
+    <!--UserProfile-->
+    <string name="first_name_user">First name:</string>
+    <string name="last_name_user">Last name:</string>
+    <string name="email_user">Email:</string>
+    <string name="country_user">Country</string>
+    <string name="type_user">Type:</string>
+    <string name="phone_number_user">Phone number:</string>
 </resources>
